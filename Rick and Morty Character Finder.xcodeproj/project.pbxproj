@@ -9,21 +9,25 @@
 /* Begin PBXBuildFile section */
 		46361AF2241F865C00FB2996 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46361AF1241F865C00FB2996 /* AppDelegate.swift */; };
 		46361AF4241F865C00FB2996 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46361AF3241F865C00FB2996 /* SceneDelegate.swift */; };
-		46361AF6241F865C00FB2996 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46361AF5241F865C00FB2996 /* ViewController.swift */; };
-		46361AF9241F865C00FB2996 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46361AF7241F865C00FB2996 /* Main.storyboard */; };
 		46361AFB241F865D00FB2996 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 46361AFA241F865D00FB2996 /* Assets.xcassets */; };
 		46361AFE241F865D00FB2996 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46361AFC241F865D00FB2996 /* LaunchScreen.storyboard */; };
+		46361B06241F8A7100FB2996 /* CFTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46361B05241F8A7000FB2996 /* CFTabBarController.swift */; };
+		46361B0F241F8E3500FB2996 /* CharactersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46361B0E241F8E3500FB2996 /* CharactersVC.swift */; };
+		46361B11241F8E4B00FB2996 /* EpisodesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46361B10241F8E4B00FB2996 /* EpisodesVC.swift */; };
+		46361B13241F8E5C00FB2996 /* FavoritesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46361B12241F8E5C00FB2996 /* FavoritesVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		46361AEE241F865C00FB2996 /* Rick and Morty Character Finder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Rick and Morty Character Finder.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		46361AF1241F865C00FB2996 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		46361AF3241F865C00FB2996 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		46361AF5241F865C00FB2996 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		46361AF8241F865C00FB2996 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		46361AFA241F865D00FB2996 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		46361AFD241F865D00FB2996 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		46361AFF241F865D00FB2996 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		46361B05241F8A7000FB2996 /* CFTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFTabBarController.swift; sourceTree = "<group>"; };
+		46361B0E241F8E3500FB2996 /* CharactersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersVC.swift; sourceTree = "<group>"; };
+		46361B10241F8E4B00FB2996 /* EpisodesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodesVC.swift; sourceTree = "<group>"; };
+		46361B12241F8E5C00FB2996 /* FavoritesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +60,49 @@
 		46361AF0241F865C00FB2996 /* Rick and Morty Character Finder */ = {
 			isa = PBXGroup;
 			children = (
-				46361AF1241F865C00FB2996 /* AppDelegate.swift */,
-				46361AF3241F865C00FB2996 /* SceneDelegate.swift */,
-				46361AF5241F865C00FB2996 /* ViewController.swift */,
-				46361AF7241F865C00FB2996 /* Main.storyboard */,
-				46361AFA241F865D00FB2996 /* Assets.xcassets */,
-				46361AFC241F865D00FB2996 /* LaunchScreen.storyboard */,
+				46361B0D241F8B6300FB2996 /* Screens */,
+				46361B14241F9A9C00FB2996 /* Cutom Views */,
+				46361B16241F9AD300FB2996 /* Support */,
 				46361AFF241F865D00FB2996 /* Info.plist */,
 			);
 			path = "Rick and Morty Character Finder";
+			sourceTree = "<group>";
+		};
+		46361B0D241F8B6300FB2996 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				46361B0E241F8E3500FB2996 /* CharactersVC.swift */,
+				46361B10241F8E4B00FB2996 /* EpisodesVC.swift */,
+				46361B12241F8E5C00FB2996 /* FavoritesVC.swift */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		46361B14241F9A9C00FB2996 /* Cutom Views */ = {
+			isa = PBXGroup;
+			children = (
+				46361B15241F9AA500FB2996 /* TabBarControllers */,
+			);
+			path = "Cutom Views";
+			sourceTree = "<group>";
+		};
+		46361B15241F9AA500FB2996 /* TabBarControllers */ = {
+			isa = PBXGroup;
+			children = (
+				46361B05241F8A7000FB2996 /* CFTabBarController.swift */,
+			);
+			path = TabBarControllers;
+			sourceTree = "<group>";
+		};
+		46361B16241F9AD300FB2996 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				46361AF1241F865C00FB2996 /* AppDelegate.swift */,
+				46361AF3241F865C00FB2996 /* SceneDelegate.swift */,
+				46361AFA241F865D00FB2996 /* Assets.xcassets */,
+				46361AFC241F865D00FB2996 /* LaunchScreen.storyboard */,
+			);
+			path = Support;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -127,7 +165,6 @@
 			files = (
 				46361AFE241F865D00FB2996 /* LaunchScreen.storyboard in Resources */,
 				46361AFB241F865D00FB2996 /* Assets.xcassets in Resources */,
-				46361AF9241F865C00FB2996 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,8 +175,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				46361AF6241F865C00FB2996 /* ViewController.swift in Sources */,
+				46361B06241F8A7100FB2996 /* CFTabBarController.swift in Sources */,
 				46361AF2241F865C00FB2996 /* AppDelegate.swift in Sources */,
+				46361B13241F8E5C00FB2996 /* FavoritesVC.swift in Sources */,
+				46361B0F241F8E3500FB2996 /* CharactersVC.swift in Sources */,
+				46361B11241F8E4B00FB2996 /* EpisodesVC.swift in Sources */,
 				46361AF4241F865C00FB2996 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -147,14 +187,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		46361AF7241F865C00FB2996 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				46361AF8241F865C00FB2996 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		46361AFC241F865D00FB2996 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

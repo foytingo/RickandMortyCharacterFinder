@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  CharactersVC.swift
 //  Rick and Morty Character Finder
 //
 //  Created by Murat Baykor on 16.03.2020.
@@ -8,13 +8,12 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class CharactersVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+
+        view.backgroundColor = .systemTeal
     }
 
-
 }
-
