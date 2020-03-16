@@ -14,6 +14,16 @@ class CharactersVC: UIViewController {
         super.viewDidLoad()
 
         view.backgroundColor = .systemTeal
+        NetworkManager.shared.getAllChar(page: 1) { [weak self] result in
+            guard self != nil else {return}
+            
+            switch result {
+            case .success(let charaters):
+                print(charaters.info.pages)
+            case .failure(let error):
+                print(error.rawValue)
+            }
+        }
     }
 
 }
