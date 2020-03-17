@@ -11,7 +11,7 @@ import UIKit
 class CFCharAvatarImageView: UIImageView {
 
     let cache = NetworkManager.shared.cache
-    let placeholderImage = UIImage(named: "person")
+    let placeholderImage = UIImage(named: "placeholder")
     
     override init(frame: CGRect) {
         super.init(frame: frame)

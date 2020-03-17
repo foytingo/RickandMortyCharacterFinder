@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		46048D402420DEB800EAC0AC /* UIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46048D3F2420DEB800EAC0AC /* UIHelper.swift */; };
+		46048D432420E68500EAC0AC /* CFDataLoadingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46048D422420E68500EAC0AC /* CFDataLoadingVC.swift */; };
 		46361AF2241F865C00FB2996 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46361AF1241F865C00FB2996 /* AppDelegate.swift */; };
 		46361AF4241F865C00FB2996 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46361AF3241F865C00FB2996 /* SceneDelegate.swift */; };
 		46361AFB241F865D00FB2996 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 46361AFA241F865D00FB2996 /* Assets.xcassets */; };
@@ -24,6 +26,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		46048D3F2420DEB800EAC0AC /* UIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIHelper.swift; sourceTree = "<group>"; };
+		46048D422420E68500EAC0AC /* CFDataLoadingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFDataLoadingVC.swift; sourceTree = "<group>"; };
 		46361AEE241F865C00FB2996 /* Rick and Morty Character Finder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Rick and Morty Character Finder.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		46361AF1241F865C00FB2996 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		46361AF3241F865C00FB2996 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -53,6 +57,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		46048D412420E66B00EAC0AC /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				46048D422420E68500EAC0AC /* CFDataLoadingVC.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
 		46361AE5241F865C00FB2996 = {
 			isa = PBXGroup;
 			children = (
@@ -96,6 +108,7 @@
 		46361B14241F9A9C00FB2996 /* Cutom Views */ = {
 			isa = PBXGroup;
 			children = (
+				46048D412420E66B00EAC0AC /* ViewControllers */,
 				46361B26241FA8A800FB2996 /* Cells */,
 				46361B23241FA88200FB2996 /* Labels */,
 				46361B20241FA4DA00FB2996 /* ImageViews */,
@@ -135,6 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				46361B1B241F9FA900FB2996 /* CFError.swift */,
+				46048D3F2420DEB800EAC0AC /* UIHelper.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -241,6 +255,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				46048D402420DEB800EAC0AC /* UIHelper.swift in Sources */,
 				46361B22241FA51100FB2996 /* CFCharAvatarImageView.swift in Sources */,
 				46361B1F241FA01C00FB2996 /* NetworkManager.swift in Sources */,
 				46361B06241F8A7100FB2996 /* CFTabBarController.swift in Sources */,
@@ -248,6 +263,7 @@
 				46361AF2241F865C00FB2996 /* AppDelegate.swift in Sources */,
 				46361B25241FA89500FB2996 /* CFTitleLabel.swift in Sources */,
 				46361B1C241F9FA900FB2996 /* CFError.swift in Sources */,
+				46048D432420E68500EAC0AC /* CFDataLoadingVC.swift in Sources */,
 				46361B13241F8E5C00FB2996 /* FavoritesVC.swift in Sources */,
 				46361B0F241F8E3500FB2996 /* CharactersVC.swift in Sources */,
 				46361B11241F8E4B00FB2996 /* EpisodesVC.swift in Sources */,

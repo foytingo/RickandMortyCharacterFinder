@@ -8,22 +8,91 @@
 
 import UIKit
 
-class CharactersVC: UIViewController {
-
+class CharactersVC: CFDataLoadingVC {
+    
+    enum Section { case main }
+    var characters : [Character] = []
+    var page = 1
+    var isLoadingMoreChar = false
+    
+    var collectionView: UICollectionView!
+    var dataSource: UICollectionViewDiffableDataSource<Section,Character>!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        view.backgroundColor = .systemTeal
-        NetworkManager.shared.getAllChar(page: 1) { [weak self] result in
-            guard self != nil else {return}
-            
+        configureViewController()
+        configureCollectionView()
+        getCharacters(page: page)
+        configureDataSource()
+    }
+    
+    func configureViewController() {
+        view.backgroundColor = .systemBackground
+        navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    
+    
+    func configureCollectionView() {
+        collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: UIHelper.createThreeColumnFlowLayout(in: view))
+        view.addSubview(collectionView)
+        collectionView.delegate = self
+        collectionView.backgroundColor = .systemBackground
+        collectionView.register(CharCell.self, forCellWithReuseIdentifier: CharCell.reuseID)
+    }
+    
+    func getCharacters(page: Int){
+        showLoadingView()
+        isLoadingMoreChar = true
+        NetworkManager.shared.getAllChar(page: page) { [weak self] result in
+            guard let self = self else {return}
+            self.dismissLoadingView()
             switch result {
-            case .success(let charaters):
-                print(charaters.info.pages)
+            case .success(let characters):
+                self.updateUI(with: characters.results)
+                print("\(page)/\(characters.info.pages)")
             case .failure(let error):
-                print(error.rawValue)
+                print(error)
             }
+            self.isLoadingMoreChar = false
         }
     }
+    
+    func updateUI(with characters: [Character]) {
+        self.characters.append(contentsOf: characters)
+        self.updateData(on: self.characters)
+    }
+    
+    
+    func updateData(on characters: [Character]) {
+        var snapshot = NSDiffableDataSourceSnapshot<Section,Character>()
+        snapshot.appendSections([.main])
+        snapshot.appendItems(characters)
+        DispatchQueue.main.async {
+            self.dataSource.apply(snapshot,animatingDifferences: true)
+        }
+    }
+    
+    func configureDataSource() {
+        dataSource = UICollectionViewDiffableDataSource<Section,Character>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, charater) -> UICollectionViewCell? in
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CharCell.reuseID, for: indexPath) as! CharCell
+            cell.set(char: charater)
+            return cell
+        })
+    }
+    
+}
 
+extension CharactersVC: UICollectionViewDelegate {
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        let offsetY         = scrollView.contentOffset.y
+        let contentHeight   = scrollView.contentSize.height
+        let height          = scrollView.frame.size.height
+        
+        if offsetY > contentHeight - height {
+            guard !isLoadingMoreChar else { return }
+            page += 1
+            getCharacters(page: page)
+        }
+    }
 }
