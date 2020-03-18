@@ -12,8 +12,10 @@ class CharactersVC: CFDataLoadingVC {
     
     enum Section { case main }
     var characters : [Character] = []
+    var filteredCharacters : [Character] = []
     var page = 1
     var isLoadingMoreChar = false
+    var isSearching = false
     
     var collectionView: UICollectionView!
     var dataSource: UICollectionViewDiffableDataSource<Section,Character>!
@@ -21,6 +23,7 @@ class CharactersVC: CFDataLoadingVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureViewController()
+        configureSearchController()
         configureCollectionView()
         getCharacters(page: page)
         configureDataSource()
@@ -38,6 +41,15 @@ class CharactersVC: CFDataLoadingVC {
         collectionView.delegate = self
         collectionView.backgroundColor = .systemBackground
         collectionView.register(CharCell.self, forCellWithReuseIdentifier: CharCell.reuseID)
+    }
+    
+    
+    func configureSearchController() {
+        let searchController = UISearchController()
+        searchController.searchResultsUpdater = self
+        searchController.searchBar.placeholder = "Search for a character's name"
+        searchController.obscuresBackgroundDuringPresentation = false
+        navigationItem.searchController = searchController
     }
     
     func getCharacters(page: Int){
@@ -95,4 +107,21 @@ extension CharactersVC: UICollectionViewDelegate {
             getCharacters(page: page)
         }
     }
+}
+
+extension CharactersVC: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let filter = searchController.searchBar.text, !filter.isEmpty else {
+            filteredCharacters.removeAll()
+            updateData(on: characters)
+            isSearching = false
+            return
+        }
+        isSearching = true
+        filteredCharacters = characters.filter {
+            $0.name.lowercased().contains(filter.lowercased()) }
+        updateData(on: filteredCharacters)
+    }
+    
+    
 }
