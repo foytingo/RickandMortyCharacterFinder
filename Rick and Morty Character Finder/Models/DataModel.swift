@@ -13,10 +13,26 @@ struct Characters: Codable {
     let results: [Character]
 }
 
+struct Episodes: Codable {
+    let info: Info
+    let results: [Episode]
+}
+
 struct Info: Codable {
     let count : Int
     let pages : Int
 }
+
+
+struct Episode: Codable, Hashable{
+    let id: Int
+    let name: String
+    let air_date: String
+    let episode: String
+    let characters: [String]
+    let url: String
+}
+
 
 struct Character: Codable, Hashable {
     let id : Int

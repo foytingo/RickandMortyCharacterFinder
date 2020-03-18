@@ -61,7 +61,6 @@ class CharactersVC: CFDataLoadingVC {
             switch result {
             case .success(let characters):
                 self.updateUI(with: characters.results)
-                print("\(page)/\(characters.info.pages)")
             case .failure(let error):
                 print(error)
             }
@@ -106,6 +105,17 @@ extension CharactersVC: UICollectionViewDelegate {
             page += 1
             getCharacters(page: page)
         }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let activeArray = isSearching ? filteredCharacters : characters
+        let character = activeArray[indexPath.item]
+        
+        let destVC = CharacterInfoVC()
+        destVC.characterID = character.id
+        destVC.characterName = character.name
+        let navController = UINavigationController(rootViewController: destVC)
+        present(navController, animated: true)
     }
 }
 
