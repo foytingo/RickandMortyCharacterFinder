@@ -8,27 +8,116 @@
 
 import UIKit
 
-class CharacterInfoVC: UIViewController {
-
-    var characterID: Int!
-    var characterName: String!
+class CharacterInfoVC: CFDataLoadingVC {
+    
+    var character: Character!
+    var episodes : [Episode] = []
+    let headerView = CFCharInfoHeaderView()
+    let episodesLabel = CFTitleLabel(textAlignment: .left, fontSize: 30)
+    let tableView = UITableView()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
-        title = characterName
-        print(characterID!)
+        title = character.name
+        configureHeaderView()
+        configureData(with: character)
+        configureEpisodesLabel()
+        configureTableView()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func viewDidAppear(_ animated: Bool) {
+        getEpisodes(episodes: character.episode.map{ $0.replacingOccurrences(of: "https://rickandmortyapi.com/api/episode/", with: "")})
+        
     }
-    */
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        episodes.removeAll(keepingCapacity: false)
+    }
+    
+    private func configureHeaderView(){
+        view.addSubview(headerView)
+        
+        NSLayoutConstraint.activate([
+            headerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 5),
+            headerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
+            headerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
+            headerView.heightAnchor.constraint(equalToConstant: 120)
+        ])
+    }
 
+    
+    private func configureEpisodesLabel(){
+        if character.episode.count > 1 {
+            episodesLabel.text = "Episodes"
+        } else {
+            episodesLabel.text = "Episode"
+        }
+        
+        view.addSubview(episodesLabel)
+        NSLayoutConstraint.activate([
+            episodesLabel.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: 15),
+            episodesLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
+            episodesLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
+            episodesLabel.heightAnchor.constraint(equalToConstant: 32)
+        ])
+        
+    }
+    
+    
+    func configureTableView(){
+        view.addSubview(tableView)
+        tableView.dataSource = self
+        tableView.tableFooterView = UIView()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: episodesLabel.bottomAnchor, constant: 15),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -15)
+        ])
+        
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+    }
+    
+    func getEpisodes(episodes: [String]) {
+        showLoadingView()
+        NetworkManager.shared.getMultipleEpisode(episodes: episodes) { [weak self] result in
+            guard let self = self else {return}
+            self.dismissLoadingView()
+            switch result {
+            case .success(let episodes):
+                self.updateUI(on: episodes)
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    func updateUI(on episodes: [Episode]) {
+        self.episodes.append(contentsOf: episodes)
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+    
+    func configureData(with character: Character) {
+        headerView.set(with: character)
+    }
+}
+
+
+extension CharacterInfoVC: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return episodes.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell")!
+        cell.accessoryType = .disclosureIndicator
+        cell.textLabel?.text = episodes[indexPath.row].episode
+        return cell
+    }
 }

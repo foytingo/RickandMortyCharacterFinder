@@ -53,6 +53,48 @@ class NetworkManager {
         task.resume()
     }
     
+    func getMultipleEpisode(episodes: [String], completed: @escaping (Result<[Episode], CFError>) -> Void) {
+        var endpoint = baseURL + "/episode/"
+        
+        for episode in episodes {
+            endpoint += "," + episode
+        }
+        
+        guard let url = URL(string: endpoint) else {
+            completed(.failure(.invalidURL))
+            return
+        }
+        
+        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+            
+            if let _ = error {
+                completed(.failure(.unableToComplete))
+                return
+            }
+            
+            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+                completed(.failure(.invalidResponse))
+                return
+            }
+            
+            guard let data = data else {
+                completed(.failure(.invalidData))
+                return
+            }
+            
+            do {
+                let decoder = JSONDecoder()
+                let episodes = try decoder.decode([Episode].self, from: data)
+                completed(.success(episodes))
+            } catch {
+                completed(.failure(.invalidData))
+            }
+        }
+        
+        task.resume()
+    }
+    
+    
     func getAllChar(page: Int, completed: @escaping (Result<Characters, CFError>) -> Void) {
         let endpoint = baseURL + "/character/?page=\(page)"
         
