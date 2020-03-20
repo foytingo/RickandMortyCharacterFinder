@@ -113,9 +113,9 @@ extension CharactersVC: UICollectionViewDelegate {
         
         let destVC = CharacterInfoVC()
         destVC.character = character
-        //let navController = UINavigationController(rootViewController: destVC)
-        navigationController?.pushViewController(destVC, animated: true)
-        //present(navController, animated: true)
+        let navController = UINavigationController(rootViewController: destVC)
+        //navigationController?.pushViewController(destVC, animated: true)
+        present(navController, animated: true)
     }
 }
 

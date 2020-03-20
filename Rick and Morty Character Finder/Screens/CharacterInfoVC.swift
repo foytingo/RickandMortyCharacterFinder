@@ -19,28 +19,43 @@ class CharacterInfoVC: CFDataLoadingVC {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
-        title = character.name
+        configureViewController()
         configureHeaderView()
         configureData(with: character)
         configureEpisodesLabel()
         configureTableView()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         getEpisodes(episodes: character.episode.map{ $0.replacingOccurrences(of: "https://rickandmortyapi.com/api/episode/", with: "")})
         
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         episodes.removeAll(keepingCapacity: false)
+        tableView.reloadData()
     }
+    
+    
+    func configureViewController() {
+        view.backgroundColor = .systemBackground
+        title = character.name
+        //navigationController?.navigationBar.prefersLargeTitles = true
+        
+        let addFav = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
+        navigationItem.rightBarButtonItem = addFav
+    }
+    
+    @objc func addButtonTapped() {
+        print("Add button tapped")
+    }
+    
     
     private func configureHeaderView(){
         view.addSubview(headerView)
         
         NSLayoutConstraint.activate([
-            headerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 5),
+            headerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 15),
             headerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
             headerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
             headerView.heightAnchor.constraint(equalToConstant: 120)
@@ -116,8 +131,9 @@ extension CharacterInfoVC: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell")!
-        cell.accessoryType = .disclosureIndicator
-        cell.textLabel?.text = episodes[indexPath.row].episode
+        cell.textLabel?.text = "\(episodes[indexPath.row].episode)-\(episodes[indexPath.row].name)"
         return cell
     }
 }
+
+

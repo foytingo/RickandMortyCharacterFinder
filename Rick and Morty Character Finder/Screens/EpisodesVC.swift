@@ -96,8 +96,7 @@ extension EpisodesVC: UITableViewDelegate {
         let episode = episodes[indexPath.item]
         
         let destVC = EpisodeInfoVC()
-        destVC.episodeID = episode.id
-        destVC.episodeName = episode.episode
+        destVC.episode = episode
         navigationController?.pushViewController(destVC, animated: true)
     }
 }

@@ -24,7 +24,8 @@ struct Info: Codable {
 }
 
 
-struct Episode: Codable, Hashable{
+struct Episode: Codable, Hashable, Identifiable {
+    let uuid = UUID()
     let id: Int
     let name: String
     let air_date: String
@@ -34,7 +35,8 @@ struct Episode: Codable, Hashable{
 }
 
 
-struct Character: Codable, Hashable {
+struct Character: Codable, Hashable, Identifiable {
+    let uuid = UUID()
     let id : Int
     let name : String
     let status : String
