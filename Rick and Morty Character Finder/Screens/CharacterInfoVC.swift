@@ -13,7 +13,7 @@ class CharacterInfoVC: CFDataLoadingVC {
     var character: Character!
     var episodes : [Episode] = []
     let headerView = CFCharInfoHeaderView()
-    let episodesLabel = CFTitleLabel(textAlignment: .left, fontSize: 30)
+    let episodesLabel = CFTitleLabel(textAlignment: .left, fontSize: 26)
     let tableView = UITableView()
     
     
@@ -21,20 +21,12 @@ class CharacterInfoVC: CFDataLoadingVC {
         super.viewDidLoad()
         configureViewController()
         configureHeaderView()
+         getEpisodes(episodes: character.episode.map{ $0.replacingOccurrences(of: "https://rickandmortyapi.com/api/episode/", with: "")})
         configureData(with: character)
         configureEpisodesLabel()
         configureTableView()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        getEpisodes(episodes: character.episode.map{ $0.replacingOccurrences(of: "https://rickandmortyapi.com/api/episode/", with: "")})
-        
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        episodes.removeAll(keepingCapacity: false)
-        tableView.reloadData()
-    }
     
     
     func configureViewController() {
@@ -73,9 +65,9 @@ class CharacterInfoVC: CFDataLoadingVC {
         view.addSubview(episodesLabel)
         NSLayoutConstraint.activate([
             episodesLabel.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: 15),
-            episodesLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
+            episodesLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             episodesLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
-            episodesLabel.heightAnchor.constraint(equalToConstant: 32)
+            episodesLabel.heightAnchor.constraint(equalToConstant: 30)
         ])
         
     }
@@ -88,13 +80,13 @@ class CharacterInfoVC: CFDataLoadingVC {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: episodesLabel.bottomAnchor, constant: 15),
+            tableView.topAnchor.constraint(equalTo: episodesLabel.bottomAnchor, constant: 5),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -15)
         ])
         
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.register(EpisodeCell.self, forCellReuseIdentifier: EpisodeCell.reuseID)
     }
     
     func getEpisodes(episodes: [String]) {
@@ -130,8 +122,9 @@ extension CharacterInfoVC: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell")!
-        cell.textLabel?.text = "\(episodes[indexPath.row].episode)-\(episodes[indexPath.row].name)"
+        let cell = tableView.dequeueReusableCell(withIdentifier: EpisodeCell.reuseID) as! EpisodeCell
+        cell.isUserInteractionEnabled = false
+        cell.set(episode: episodes[indexPath.row])
         return cell
     }
 }

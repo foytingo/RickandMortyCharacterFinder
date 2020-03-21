@@ -36,7 +36,7 @@ class EpisodesVC: CFDataLoadingVC {
         tableView.frame = view.bounds
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.register(EpisodeCell.self, forCellReuseIdentifier: EpisodeCell.reuseID)
     }
     
     func updateUI(on episodes: [Episode]) {
@@ -71,9 +71,10 @@ extension EpisodesVC: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell")!
-        cell.accessoryType = .disclosureIndicator
-        cell.textLabel?.text = "\(episodes[indexPath.row].episode): \(episodes[indexPath.row].name)"
+        let cell = tableView.dequeueReusableCell(withIdentifier: EpisodeCell.reuseID) as! EpisodeCell
+        cell.set(episode: episodes[indexPath.row])
+        //cell.accessoryType = .disclosureIndicator
+        //cell.textLabel?.text = "\(episodes[indexPath.row].episode): \(episodes[indexPath.row].name)"
         return cell
     }
 }
