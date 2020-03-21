@@ -10,6 +10,8 @@
 		46048D402420DEB800EAC0AC /* UIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46048D3F2420DEB800EAC0AC /* UIHelper.swift */; };
 		46048D432420E68500EAC0AC /* CFDataLoadingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46048D422420E68500EAC0AC /* CFDataLoadingVC.swift */; };
 		461093EF2425DB7200E25909 /* EpisodeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 461093EE2425DB7200E25909 /* EpisodeCell.swift */; };
+		461093F12425E06900E25909 /* FavCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 461093F02425E06900E25909 /* FavCell.swift */; };
+		461093F32425E25E00E25909 /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 461093F22425E25E00E25909 /* PersistenceManager.swift */; };
 		46361AF2241F865C00FB2996 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46361AF1241F865C00FB2996 /* AppDelegate.swift */; };
 		46361AF4241F865C00FB2996 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46361AF3241F865C00FB2996 /* SceneDelegate.swift */; };
 		46361AFB241F865D00FB2996 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 46361AFA241F865D00FB2996 /* Assets.xcassets */; };
@@ -34,6 +36,8 @@
 		46048D3F2420DEB800EAC0AC /* UIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIHelper.swift; sourceTree = "<group>"; };
 		46048D422420E68500EAC0AC /* CFDataLoadingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFDataLoadingVC.swift; sourceTree = "<group>"; };
 		461093EE2425DB7200E25909 /* EpisodeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeCell.swift; sourceTree = "<group>"; };
+		461093F02425E06900E25909 /* FavCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavCell.swift; sourceTree = "<group>"; };
+		461093F22425E25E00E25909 /* PersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
 		46361AEE241F865C00FB2996 /* Rick and Morty Character Finder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Rick and Morty Character Finder.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		46361AF1241F865C00FB2996 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		46361AF3241F865C00FB2996 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -170,6 +174,7 @@
 			isa = PBXGroup;
 			children = (
 				46361B1E241FA01C00FB2996 /* NetworkManager.swift */,
+				461093F22425E25E00E25909 /* PersistenceManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -196,6 +201,7 @@
 			children = (
 				46361B27241FA8CD00FB2996 /* CharCell.swift */,
 				461093EE2425DB7200E25909 /* EpisodeCell.swift */,
+				461093F02425E06900E25909 /* FavCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -291,7 +297,9 @@
 				461093EF2425DB7200E25909 /* EpisodeCell.swift in Sources */,
 				46048D432420E68500EAC0AC /* CFDataLoadingVC.swift in Sources */,
 				46361B13241F8E5C00FB2996 /* FavoritesVC.swift in Sources */,
+				461093F12425E06900E25909 /* FavCell.swift in Sources */,
 				46361B0F241F8E3500FB2996 /* CharactersVC.swift in Sources */,
+				461093F32425E25E00E25909 /* PersistenceManager.swift in Sources */,
 				463E4D7F2422422E004C5383 /* EpisodeInfoVC.swift in Sources */,
 				46720B2724239C6D007474C2 /* CFCharInfoHeaderView.swift in Sources */,
 				46361B11241F8E4B00FB2996 /* EpisodesVC.swift in Sources */,

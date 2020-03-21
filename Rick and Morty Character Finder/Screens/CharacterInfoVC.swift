@@ -39,7 +39,22 @@ class CharacterInfoVC: CFDataLoadingVC {
     }
     
     @objc func addButtonTapped() {
-        print("Add button tapped")
+       addCharToFavorites(character: character)
+    }
+    
+    func addCharToFavorites(character: Character) {
+        let favChar = FavChar(name: character.name, image: character.image)
+        
+        PersistenceManager.updateWith(favorite: favChar, actionType: .add) { [weak self] error in
+            guard self != nil else { return }
+            
+            guard let error = error else {
+                print("Basariyla eklendi")
+                return
+            }
+            
+            print("Hata \(error)")
+        }
     }
     
     

@@ -48,3 +48,8 @@ struct Character: Codable, Hashable, Identifiable {
     let url : String
     
 }
+
+struct FavChar: Codable, Hashable {
+    let name: String
+    let image: String
+}
