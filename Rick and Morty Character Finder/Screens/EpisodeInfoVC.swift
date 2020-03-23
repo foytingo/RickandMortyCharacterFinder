@@ -31,7 +31,7 @@ class EpisodeInfoVC: CFDataLoadingVC{
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        getCharacters(characters: episode.characters.map{ $0.replacingOccurrences(of: "https://rickandmortyapi.com/api/character/", with: "")})
+        getCharacters(characters: getCharacterIdfromUrl(array: episode.characters))
         
     }
     
@@ -65,7 +65,7 @@ class EpisodeInfoVC: CFDataLoadingVC{
             case .success(let characters):
                 self.updateUI(with: characters)
             case .failure(let error):
-                print(error)
+                 self.presentAlertOnMainThread(alertTitle: "Something went wrong", alertMessage: error.rawValue, buttonTitle: "Ok")
             }
         }
     }

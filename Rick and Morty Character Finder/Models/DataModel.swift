@@ -52,4 +52,5 @@ struct Character: Codable, Hashable, Identifiable {
 struct FavChar: Codable, Hashable {
     let name: String
     let image: String
+    let status: String
 }

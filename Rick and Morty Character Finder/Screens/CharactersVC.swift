@@ -62,7 +62,7 @@ class CharactersVC: CFDataLoadingVC {
             case .success(let characters):
                 self.updateUI(with: characters.results)
             case .failure(let error):
-                print(error)
+                 self.presentAlertOnMainThread(alertTitle: "Something went wrong", alertMessage: error.rawValue, buttonTitle: "Ok")
             }
             self.isLoadingMoreChar = false
         }

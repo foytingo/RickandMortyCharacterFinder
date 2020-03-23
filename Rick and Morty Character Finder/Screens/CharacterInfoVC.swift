@@ -21,7 +21,7 @@ class CharacterInfoVC: CFDataLoadingVC {
         super.viewDidLoad()
         configureViewController()
         configureHeaderView()
-         getEpisodes(episodes: character.episode.map{ $0.replacingOccurrences(of: "https://rickandmortyapi.com/api/episode/", with: "")})
+        getEpisodes(episodes: getEpisodeIdfromUrl(array: character.episode))
         configureData(with: character)
         configureEpisodesLabel()
         configureTableView()
@@ -32,7 +32,6 @@ class CharacterInfoVC: CFDataLoadingVC {
     func configureViewController() {
         view.backgroundColor = .systemBackground
         title = character.name
-        //navigationController?.navigationBar.prefersLargeTitles = true
         
         let addFav = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
         navigationItem.rightBarButtonItem = addFav
@@ -43,17 +42,17 @@ class CharacterInfoVC: CFDataLoadingVC {
     }
     
     func addCharToFavorites(character: Character) {
-        let favChar = FavChar(name: character.name, image: character.image)
+        let favChar = FavChar(name: character.name, image: character.image, status: character.status)
         
         PersistenceManager.updateWith(favorite: favChar, actionType: .add) { [weak self] error in
-            guard self != nil else { return }
+            guard let self = self else { return }
             
             guard let error = error else {
-                print("Basariyla eklendi")
+                self.presentAlertOnMainThread(alertTitle: "Success!", alertMessage: "You have successfully favorited this character.", buttonTitle: "Ok")
                 return
             }
             
-            print("Hata \(error)")
+            self.presentAlertOnMainThread(alertTitle: "Something went wrong", alertMessage: error.rawValue, buttonTitle: "Ok")
         }
     }
     
@@ -113,7 +112,7 @@ class CharacterInfoVC: CFDataLoadingVC {
             case .success(let episodes):
                 self.updateUI(on: episodes)
             case .failure(let error):
-                print(error)
+                self.presentAlertOnMainThread(alertTitle: "Something went wrong", alertMessage: error.rawValue, buttonTitle: "Ok")
             }
         }
     }

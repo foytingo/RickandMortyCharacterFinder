@@ -57,7 +57,7 @@ class EpisodesVC: CFDataLoadingVC {
                 self.updateUI(on: episodes.results)
                 self.totalPage = episodes.info.pages
             case .failure(let error):
-                print(error)
+                 self.presentAlertOnMainThread(alertTitle: "Something went wrong", alertMessage: error.rawValue, buttonTitle: "Ok")
             }
             self.isLoadingMoreChar = false
         }

@@ -51,7 +51,7 @@ class FavoritesVC: UIViewController {
                 self.updateUI(with: favorites)
                 
             case .failure(let error):
-                print(error)
+                 self.presentAlertOnMainThread(alertTitle: "Something went wrong", alertMessage: error.rawValue, buttonTitle: "Ok")
             }
         }
     }
@@ -79,13 +79,6 @@ extension FavoritesVC: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
     
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let favChar = favorites[indexPath.row]
-//        let destVC = CharacterInfoVC()
-//        destVC.character = favChar
-//        let navController = UINavigationController(rootViewController: destVC)
-//        present(navController, animated: true)
-//    }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         guard editingStyle == .delete else { return }
@@ -98,7 +91,7 @@ extension FavoritesVC: UITableViewDataSource, UITableViewDelegate {
                 return
             }
             
-            print("Silinemedi \(error)")
+             self.presentAlertOnMainThread(alertTitle: "Unable to remove", alertMessage: error.rawValue, buttonTitle: "Ok")
         }
     }
 }
