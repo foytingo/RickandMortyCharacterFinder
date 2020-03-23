@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		4600F72A2428AC7C002677B8 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4600F7292428AC7C002677B8 /* UIViewController+Ext.swift */; };
 		4600F72C2428AD5D002677B8 /* CFEmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4600F72B2428AD5D002677B8 /* CFEmptyStateView.swift */; };
-		4600F7302428B1AA002677B8 /* Array+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4600F72F2428B1AA002677B8 /* Array+Ext.swift */; };
 		46048D402420DEB800EAC0AC /* UIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46048D3F2420DEB800EAC0AC /* UIHelper.swift */; };
 		46048D432420E68500EAC0AC /* CFDataLoadingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46048D422420E68500EAC0AC /* CFDataLoadingVC.swift */; };
 		461093EF2425DB7200E25909 /* EpisodeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 461093EE2425DB7200E25909 /* EpisodeCell.swift */; };
@@ -38,7 +37,6 @@
 /* Begin PBXFileReference section */
 		4600F7292428AC7C002677B8 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
 		4600F72B2428AD5D002677B8 /* CFEmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFEmptyStateView.swift; sourceTree = "<group>"; };
-		4600F72F2428B1AA002677B8 /* Array+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Ext.swift"; sourceTree = "<group>"; };
 		46048D3F2420DEB800EAC0AC /* UIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIHelper.swift; sourceTree = "<group>"; };
 		46048D422420E68500EAC0AC /* CFDataLoadingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFDataLoadingVC.swift; sourceTree = "<group>"; };
 		461093EE2425DB7200E25909 /* EpisodeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeCell.swift; sourceTree = "<group>"; };
@@ -81,7 +79,6 @@
 			isa = PBXGroup;
 			children = (
 				4600F7292428AC7C002677B8 /* UIViewController+Ext.swift */,
-				4600F72F2428B1AA002677B8 /* Array+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -322,7 +319,6 @@
 				46720B2724239C6D007474C2 /* CFCharInfoHeaderView.swift in Sources */,
 				4600F72C2428AD5D002677B8 /* CFEmptyStateView.swift in Sources */,
 				46361B11241F8E4B00FB2996 /* EpisodesVC.swift in Sources */,
-				4600F7302428B1AA002677B8 /* Array+Ext.swift in Sources */,
 				46361AF4241F865C00FB2996 /* SceneDelegate.swift in Sources */,
 				46361B28241FA8CD00FB2996 /* CharCell.swift in Sources */,
 			);

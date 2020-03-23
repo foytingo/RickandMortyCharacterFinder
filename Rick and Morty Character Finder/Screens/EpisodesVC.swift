@@ -9,6 +9,7 @@
 import UIKit
 
 class EpisodesVC: CFDataLoadingVC {
+    
     var episodes : [Episode] = []
     var totalPage: Int!
     var page = 1
@@ -22,14 +23,14 @@ class EpisodesVC: CFDataLoadingVC {
         configureViewController()
         configureTableView()
         getEpisodes(page: page)
-        
-        
     }
+    
     
     func configureViewController() {
         view.backgroundColor = .systemBackground
         navigationController?.navigationBar.prefersLargeTitles = true
     }
+    
     
     func configureTableView(){
         view.addSubview(tableView)
@@ -39,12 +40,14 @@ class EpisodesVC: CFDataLoadingVC {
         tableView.register(EpisodeCell.self, forCellReuseIdentifier: EpisodeCell.reuseID)
     }
     
+    
     func updateUI(on episodes: [Episode]) {
         self.episodes.append(contentsOf: episodes)
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
     }
+    
     
     func getEpisodes(page: Int){
         showLoadingView()
@@ -62,22 +65,22 @@ class EpisodesVC: CFDataLoadingVC {
             self.isLoadingMoreChar = false
         }
     }
-    
 }
+
 
 extension EpisodesVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return episodes.count
     }
     
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: EpisodeCell.reuseID) as! EpisodeCell
         cell.set(episode: episodes[indexPath.row])
-        //cell.accessoryType = .disclosureIndicator
-        //cell.textLabel?.text = "\(episodes[indexPath.row].episode): \(episodes[indexPath.row].name)"
         return cell
     }
 }
+
 
 extension EpisodesVC: UITableViewDelegate {
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
@@ -89,13 +92,12 @@ extension EpisodesVC: UITableViewDelegate {
             guard !isLoadingMoreChar, page<totalPage else { return }
             page += 1
             getEpisodes(page: page)
-            
         }
     }
     
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let episode = episodes[indexPath.item]
-        
         let destVC = EpisodeInfoVC()
         destVC.episode = episode
         navigationController?.pushViewController(destVC, animated: true)

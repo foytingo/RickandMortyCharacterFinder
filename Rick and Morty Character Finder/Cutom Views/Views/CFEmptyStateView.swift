@@ -10,7 +10,7 @@ import UIKit
 
 class CFEmptyStateView: UIView {
 
-    let messageLabel = CFTitleLabel(textAlignment: .center, fontSize: 28)
+    let messageLabel = CFTitleLabel(textAlignment: .center, fontSize: 24)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -27,6 +27,7 @@ class CFEmptyStateView: UIView {
         messageLabel.text = message
         configure()
     }
+    
     
     private func configure(){
         addSubview(messageLabel)

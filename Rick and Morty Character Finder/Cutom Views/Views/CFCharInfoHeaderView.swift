@@ -17,7 +17,6 @@ class CFCharInfoHeaderView: UIView {
     let charTypeLabel = CFSecondaryTitleLabel(fontSize: 15)
     
     
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureView()
@@ -25,9 +24,11 @@ class CFCharInfoHeaderView: UIView {
         
     }
     
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
     
     
     private func configureView() {
@@ -35,6 +36,7 @@ class CFCharInfoHeaderView: UIView {
         backgroundColor = .secondarySystemBackground
         translatesAutoresizingMaskIntoConstraints = false
     }
+    
     
     func set(with character: Character){
         avatarImageView.downloadImage(fromURL: character.image)
@@ -46,11 +48,12 @@ class CFCharInfoHeaderView: UIView {
         } else {
             charTypeLabel.text = "Type: \(character.type)"
         }
-        
     }
+    
     
     private func layoutUI() {
         let padding: CGFloat = 10
+        let paddingTop: CGFloat = 5
         
         addSubview(avatarImageView)
         
@@ -60,8 +63,7 @@ class CFCharInfoHeaderView: UIView {
             avatarImageView.widthAnchor.constraint(equalToConstant: 100),
             avatarImageView.heightAnchor.constraint(equalToConstant: 100)
         ])
-        
-        
+
         addSubview(charGenderLabel)
         
         NSLayoutConstraint.activate([
@@ -74,7 +76,7 @@ class CFCharInfoHeaderView: UIView {
         addSubview(charStatusLabel)
         
         NSLayoutConstraint.activate([
-            charStatusLabel.topAnchor.constraint(equalTo: charGenderLabel.bottomAnchor, constant: 5),
+            charStatusLabel.topAnchor.constraint(equalTo: charGenderLabel.bottomAnchor, constant: paddingTop),
             charStatusLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: padding),
             charStatusLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding),
             charStatusLabel.heightAnchor.constraint(equalToConstant: 20)
@@ -83,7 +85,7 @@ class CFCharInfoHeaderView: UIView {
         addSubview(charSpeciesLabel)
         
         NSLayoutConstraint.activate([
-            charSpeciesLabel.topAnchor.constraint(equalTo: charStatusLabel.bottomAnchor, constant: 5),
+            charSpeciesLabel.topAnchor.constraint(equalTo: charStatusLabel.bottomAnchor, constant: paddingTop),
             charSpeciesLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: padding),
             charSpeciesLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding),
             charSpeciesLabel.heightAnchor.constraint(equalToConstant: 20)
@@ -92,14 +94,11 @@ class CFCharInfoHeaderView: UIView {
         addSubview(charTypeLabel)
        
         NSLayoutConstraint.activate([
-            charTypeLabel.topAnchor.constraint(equalTo: charSpeciesLabel.bottomAnchor, constant: 5),
+            charTypeLabel.topAnchor.constraint(equalTo: charSpeciesLabel.bottomAnchor, constant: paddingTop),
             charTypeLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: padding),
             charTypeLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding),
             charTypeLabel.heightAnchor.constraint(equalToConstant: 20)
         ])
-        
-    
-        
     }
     
 }

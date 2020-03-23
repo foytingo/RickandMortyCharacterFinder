@@ -11,7 +11,7 @@ import UIKit
 extension UIViewController {
     
     func presentAlertOnMainThread(alertTitle: String, alertMessage: String, buttonTitle: String) {
-        DispatchQueue.main.async {
+       DispatchQueue.main.async {
             let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
             let okAction = UIAlertAction(title: buttonTitle, style: .default)
             
@@ -19,17 +19,20 @@ extension UIViewController {
             
             self.present(alert, animated: true, completion: nil)
         }
-        
     }
     
-    func showEmptyStateView(with message: String, in tableView: UITableView){
+    
+    func showEmptyStateView(with message: String, in tableView: UIView){
         let emptyStateView = CFEmptyStateView(message: message)
-        tableView.backgroundView = emptyStateView
+        emptyStateView.frame = view.bounds
+        view.addSubview(emptyStateView)
     }
     
-     func getEpisodeIdfromUrl(array: [String])->[String]{
-           return array.map{ $0.replacingOccurrences(of: "https://rickandmortyapi.com/api/episode/", with: "")}
-       }
+    
+    func getEpisodeIdfromUrl(array: [String])->[String]{
+        return array.map{ $0.replacingOccurrences(of: "https://rickandmortyapi.com/api/episode/", with: "")}
+    }
+    
     
     func getCharacterIdfromUrl(array: [String])->[String]{
         return array.map{ $0.replacingOccurrences(of: "https://rickandmortyapi.com/api/character/", with: "")}

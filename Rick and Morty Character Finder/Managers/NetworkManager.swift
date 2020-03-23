@@ -16,6 +16,7 @@ class NetworkManager {
     
     private init() {}
     
+    
     func getAllEpisodes(page:Int, completed: @escaping (Result<Episodes, CFError>) -> Void){
         let endpoint = baseURL + "/episode/?page=\(page)"
         
@@ -25,7 +26,6 @@ class NetworkManager {
         }
         
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
-            
             if let _ = error {
                 completed(.failure(.unableToComplete))
                 return
@@ -198,7 +198,7 @@ class NetworkManager {
             self.cache.setObject(image, forKey: cacheKey)
             completed(image)
         }
-        task.resume()
         
+        task.resume()
     }
 }

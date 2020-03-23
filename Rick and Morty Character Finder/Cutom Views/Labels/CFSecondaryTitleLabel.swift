@@ -28,10 +28,10 @@ class CFSecondaryTitleLabel: UILabel {
     
     
     private func configure() {
-        textColor                   = .secondaryLabel
-        adjustsFontSizeToFitWidth   = true
-        minimumScaleFactor          = 0.8
-        lineBreakMode               = .byTruncatingTail
+        textColor = .secondaryLabel
+        adjustsFontSizeToFitWidth = true
+        minimumScaleFactor = 0.8
+        lineBreakMode = .byTruncatingTail
         translatesAutoresizingMaskIntoConstraints = false
     }
     

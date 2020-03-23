@@ -31,18 +31,18 @@ enum PersistenceManager {
                     }
                     
                     favorites.append(favorite)
-                
+                    
                 case .remove:
                     favorites.removeAll { $0.name == favorite.name }
                 }
                 
-               completed(save(favorites: favorites))
+                completed(save(favorites: favorites))
             case .failure(let error):
                 completed(error)
             }
         }
-        
     }
+    
     
     static func retrieveFavorites(completed: @escaping (Result<[FavChar],CFError>) -> Void) {
         guard let favoritesData = defaults.object(forKey: Keys.favorites) as? Data else {
@@ -69,4 +69,5 @@ enum PersistenceManager {
             return .unableToFavorite
         }
     }
+    
 }

@@ -9,13 +9,14 @@
 import UIKit
 
 class CFTabBarController: UITabBarController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         UITabBar.appearance().tintColor = .systemGreen
         viewControllers = [createCharactersNC(),createEpisodesNC(),createFavoritesNC()]
     }
+    
     
     func createCharactersNC() -> UINavigationController {
         let charactersVC = CharactersVC()
@@ -25,6 +26,7 @@ class CFTabBarController: UITabBarController {
         return UINavigationController(rootViewController: charactersVC)
     }
     
+    
     func createEpisodesNC() -> UINavigationController {
         let episodesVC = EpisodesVC()
         episodesVC.title = "Episodes"
@@ -33,14 +35,12 @@ class CFTabBarController: UITabBarController {
         return UINavigationController(rootViewController: episodesVC)
     }
     
-    func createFavoritesNC() -> UINavigationController {
-           let favoritesVC = FavoritesVC()
-           favoritesVC.title = "Favorites"
-           favoritesVC.tabBarItem = UITabBarItem(title: "Favorites", image: UIImage(systemName: "star"), tag: 2)
-           
-           return UINavigationController(rootViewController: favoritesVC)
-       }
-
     
-
+    func createFavoritesNC() -> UINavigationController {
+        let favoritesVC = FavoritesVC()
+        favoritesVC.title = "Favorites"
+        favoritesVC.tabBarItem = UITabBarItem(title: "Favorites", image: UIImage(systemName: "star"), tag: 2)
+        
+        return UINavigationController(rootViewController: favoritesVC)
+    }  
 }

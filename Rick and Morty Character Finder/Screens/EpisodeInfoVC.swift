@@ -9,17 +9,15 @@
 import UIKit
 
 class EpisodeInfoVC: CFDataLoadingVC{
+    
     enum Section { case main }
-    
     var episode: Episode!
-    
     var characters : [Character] = []
     var filteredCharacters : [Character] = []
-
+    var isSearching = false
+    
     var collectionView: UICollectionView!
     var dataSource: UICollectionViewDiffableDataSource<Section,Character>!
-    
-    var isSearching = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,15 +28,18 @@ class EpisodeInfoVC: CFDataLoadingVC{
         configureDataSource()
     }
     
+    
     override func viewWillAppear(_ animated: Bool) {
         getCharacters(characters: getCharacterIdfromUrl(array: episode.characters))
         
     }
     
+    
     func configureViewController() {
         view.backgroundColor = .systemBackground
         navigationController?.navigationBar.prefersLargeTitles = true
     }
+    
     
     func configureCollectionView() {
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: UIHelper.createThreeColumnFlowLayout(in: view))
@@ -48,6 +49,7 @@ class EpisodeInfoVC: CFDataLoadingVC{
         collectionView.register(CharCell.self, forCellWithReuseIdentifier: CharCell.reuseID)
     }
     
+    
     func configureSearchController() {
         let searchController = UISearchController()
         searchController.searchResultsUpdater = self
@@ -55,6 +57,7 @@ class EpisodeInfoVC: CFDataLoadingVC{
         searchController.obscuresBackgroundDuringPresentation = false
         navigationItem.searchController = searchController
     }
+    
     
     func getCharacters(characters: [String]) {
         showLoadingView()
@@ -65,10 +68,11 @@ class EpisodeInfoVC: CFDataLoadingVC{
             case .success(let characters):
                 self.updateUI(with: characters)
             case .failure(let error):
-                 self.presentAlertOnMainThread(alertTitle: "Something went wrong", alertMessage: error.rawValue, buttonTitle: "Ok")
+                self.presentAlertOnMainThread(alertTitle: "Something went wrong", alertMessage: error.rawValue, buttonTitle: "Ok")
             }
         }
     }
+    
     
     func updateUI(with characters: [Character]) {
         self.characters.append(contentsOf: characters)
@@ -85,6 +89,7 @@ class EpisodeInfoVC: CFDataLoadingVC{
         }
     }
     
+    
     func configureDataSource() {
         dataSource = UICollectionViewDiffableDataSource<Section,Character>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, charater) -> UICollectionViewCell? in
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CharCell.reuseID, for: indexPath) as! CharCell
@@ -92,22 +97,20 @@ class EpisodeInfoVC: CFDataLoadingVC{
             return cell
         })
     }
-    
-    
 }
+
 
 extension EpisodeInfoVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let activeArray = isSearching ? filteredCharacters : characters
         let character = activeArray[indexPath.item]
-        
         let destVC = CharacterInfoVC()
         destVC.character = character
         let navController = UINavigationController(rootViewController: destVC)
-        //navigationController?.pushViewController(destVC, animated: true)
         present(navController, animated: true)
     }
 }
+
 
 extension EpisodeInfoVC: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
@@ -121,8 +124,6 @@ extension EpisodeInfoVC: UISearchResultsUpdating {
         filteredCharacters = characters.filter {
             $0.name.lowercased().contains(filter.lowercased()) }
         updateData(on: filteredCharacters)
-    }
-    
-    
+    }    
 }
 

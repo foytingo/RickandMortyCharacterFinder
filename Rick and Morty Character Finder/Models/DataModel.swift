@@ -13,10 +13,12 @@ struct Characters: Codable {
     let results: [Character]
 }
 
+
 struct Episodes: Codable {
     let info: Info
     let results: [Episode]
 }
+
 
 struct Info: Codable {
     let count : Int
@@ -46,8 +48,8 @@ struct Character: Codable, Hashable, Identifiable {
     let image : String
     let episode : [String]
     let url : String
-    
 }
+
 
 struct FavChar: Codable, Hashable {
     let name: String

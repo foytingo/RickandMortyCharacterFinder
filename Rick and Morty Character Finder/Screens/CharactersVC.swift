@@ -52,6 +52,7 @@ class CharactersVC: CFDataLoadingVC {
         navigationItem.searchController = searchController
     }
     
+    
     func getCharacters(page: Int){
         showLoadingView()
         isLoadingMoreChar = true
@@ -68,6 +69,7 @@ class CharactersVC: CFDataLoadingVC {
         }
     }
     
+    
     func updateUI(with characters: [Character]) {
         self.characters.append(contentsOf: characters)
         self.updateData(on: self.characters)
@@ -82,6 +84,7 @@ class CharactersVC: CFDataLoadingVC {
             self.dataSource.apply(snapshot,animatingDifferences: true)
         }
     }
+    
     
     func configureDataSource() {
         dataSource = UICollectionViewDiffableDataSource<Section,Character>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, charater) -> UICollectionViewCell? in
@@ -114,10 +117,11 @@ extension CharactersVC: UICollectionViewDelegate {
         let destVC = CharacterInfoVC()
         destVC.character = character
         let navController = UINavigationController(rootViewController: destVC)
-        //navigationController?.pushViewController(destVC, animated: true)
+
         present(navController, animated: true)
     }
 }
+
 
 extension CharactersVC: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
@@ -132,6 +136,4 @@ extension CharactersVC: UISearchResultsUpdating {
             $0.name.lowercased().contains(filter.lowercased()) }
         updateData(on: filteredCharacters)
     }
-    
-    
 }

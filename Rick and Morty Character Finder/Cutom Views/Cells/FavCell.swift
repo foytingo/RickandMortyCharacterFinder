@@ -11,6 +11,7 @@ import UIKit
 class FavCell: UITableViewCell {
     
     static let reuseID  = "FavCell"
+    
     let avatarImageView = CFCharAvatarImageView(frame: .zero)
     let charNameLabel   = CFTitleLabel(textAlignment: .left, fontSize: 26)
     let charStatusLabel = CFSecondaryTitleLabel(fontSize: 16)
@@ -40,6 +41,7 @@ class FavCell: UITableViewCell {
         addSubview(charNameLabel)
         addSubview(charStatusLabel)
         isUserInteractionEnabled = false
+        
         let padding: CGFloat    = 12
         
         NSLayoutConstraint.activate([

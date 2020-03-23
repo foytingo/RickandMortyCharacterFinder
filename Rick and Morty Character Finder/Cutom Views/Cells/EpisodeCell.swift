@@ -11,8 +11,10 @@ import UIKit
 class EpisodeCell: UITableViewCell {
     
     static let reuseID = "EpisodeCell"
+    
     let episodeLabel = CFTitleLabel(textAlignment: .left, fontSize: 15)
     let episodeNameLabel = CFSecondaryTitleLabel(fontSize: 15)
+    
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -24,14 +26,14 @@ class EpisodeCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    
     func set(episode: Episode){
         episodeLabel.text = episode.episode
         episodeNameLabel.text = episode.name
     }
     
+    
     private func configure(){
-        
-        
         addSubview(episodeLabel)
         addSubview(episodeNameLabel)
         
